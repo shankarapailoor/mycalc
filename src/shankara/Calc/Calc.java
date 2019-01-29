@@ -1,4 +1,4 @@
-package org.shankara.Calc;
+package shankara.Calc;
 
 import com.cyberpointllc.stac.calculator.Calculator;
 import com.cyberpointllc.stac.calculator.LargeNumeralFormatter;
