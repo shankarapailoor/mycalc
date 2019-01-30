@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="mycalc:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/mycalc_jar</output-path>
-    <root id="archive" name="mycalc.jar">
-      <element id="module-output" name="mycalc" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/calculator_3-instrumented.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
