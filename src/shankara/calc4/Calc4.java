@@ -4,7 +4,7 @@ import com.cyberpointllc.stac.calculator.CalculatorFormatter;
 import com.cyberpointllc.stac.calculator.LargeNumeralFormatter;
 import com.cyberpointllc.stac.calculator.RomanNumeralFormatter;
 import com.cyberpointllc.stac.calculator.Calculator;
-import edu.utexas.stac.Cost;
+//import edu.utexas.stac.Cost;
 
 
 public class Calc4 {
@@ -24,11 +24,12 @@ public class Calc4 {
                 break;
         }
         Calculator calc = new Calculator(f);
-        Cost.reset();
+        //Cost.reset();
         try {
             calc.handleExpression(expression);
         } catch (Exception e){}
-        return Cost.read();
+        //return Cost.read();
+        return 0;
     }
 
 }
