@@ -1,4 +1,4 @@
-package shankara.Calc;
+package shankara.calc;
 
 import com.cyberpointllc.stac.calculator.Calculator;
 import com.cyberpointllc.stac.calculator.CalculatorFormatter;
@@ -9,11 +9,9 @@ import edu.utexas.stac.Cost;
 
 
 public class Calc {
-
     enum CalcType {
         DIGIT, ROMAN
     }
-
     public long computeExpression(CalcType type, String expression) {
         CalculatorFormatter f;
         switch (type) {
