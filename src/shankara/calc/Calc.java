@@ -8,13 +8,15 @@ import com.cyberpointllc.stac.calculator.RomanNumeralFormatter;
 import java.util.Map;
 import edu.utexas.stac.Cost;
 
+import shankara.fitnessparams.FitnessParams;
+
 
 
 public class Calc {
     enum CalcType {
         DIGIT, ROMAN
     }
-    public String computeExpression(CalcType type, String expression) {
+    public FitnessParams computeExpression(CalcType type, String expression) {
         CalculatorFormatter f;
         switch (type) {
             case DIGIT: f = new LargeNumeralFormatter();
@@ -30,14 +32,9 @@ public class Calc {
         try {
             calc.handleExpression(expression);
         } catch (Exception e){}
-        StringBuilder sb = new StringBuilder();
-        sb.append(Cost.read());
-        for (Map.Entry<String, Double> entry : Calculator.penaltyScores.entrySet()) {
-            sb.append(" ");
-            sb.append(entry.getKey());
-            sb.append("=");
-            sb.append(entry.getValue());
-        }
-        return sb.toString();
+        FitnessParams params = new FitnessParams();
+        params.cost = Cost.read();
+        params.limits = calc.penaltyScores;
+        return params;
     }
 }
