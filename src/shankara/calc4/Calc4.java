@@ -1,21 +1,23 @@
 package shankara.calc4;
 
-import com.cyberpointllc.stac.calculator.CalculatorFormatter;
-import com.cyberpointllc.stac.calculator.LargeNumeralFormatter;
-import com.cyberpointllc.stac.calculator.RomanNumeralFormatter;
-import com.cyberpointllc.stac.calculator.Calculator;
-//import edu.utexas.stac.Cost;
+import com.cyberpointllc.stac.arithmetizer.Arithmetizer;
+import com.cyberpointllc.stac.arithmetizer.ArithmetizerFormatter;
+import com.cyberpointllc.stac.arithmetizer.BigNumberFormatter;
+import com.cyberpointllc.stac.arithmetizer.RomanNumeralFormatter;
+
+import java.util.Map;
+import edu.utexas.stac.Cost;
+
 
 
 public class Calc4 {
     enum CalcType {
         DIGIT, ROMAN
     }
-
-    public long computeExpression(CalcType type, String expression) {
-        CalculatorFormatter f;
+    public String computeExpression(CalcType type, String expression) {
+        ArithmetizerFormatter f;
         switch (type) {
-            case DIGIT: f = new LargeNumeralFormatter();
+            case DIGIT: f = new BigNumberFormatter();
                 break;
             case ROMAN: f = new RomanNumeralFormatter();
                 break;
@@ -23,13 +25,19 @@ public class Calc4 {
                 f = new RomanNumeralFormatter();
                 break;
         }
-        Calculator calc = new Calculator(f);
+        Arithmetizer calc = new Arithmetizer(f);
         //Cost.reset();
         try {
-            calc.handleExpression(expression);
+            calc.processClause(expression);
         } catch (Exception e){}
-        //return Cost.read();
-        return 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append(Cost.read());
+        for (Map.Entry<String, Double> entry : Arithmetizer.penaltyScores.entrySet()) {
+            sb.append(" ");
+            sb.append(entry.getKey());
+            sb.append("=");
+            sb.append(entry.getValue());
+        }
+        return sb.toString();
     }
-
 }
