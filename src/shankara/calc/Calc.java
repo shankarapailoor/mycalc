@@ -2,8 +2,6 @@ package shankara.calc;
 
 import com.cyberpointllc.stac.calculator.*;
 import edu.utexas.stac.Cost;
-import shankara.fitnessparams.FitnessParams;
-
 
 
 public class Calc {

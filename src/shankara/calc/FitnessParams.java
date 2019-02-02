@@ -1,4 +1,4 @@
-package shankara.fitnessparams;
+package shankara.calc;
 
 import java.util.Map;
 

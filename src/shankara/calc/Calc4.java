@@ -9,7 +9,6 @@ import com.cyberpointllc.stac.arithmetizer.SquareUnitFormatter;
 import com.cyberpointllc.stac.arithmetizer.VolumeUnitFormatter;
 
 import edu.utexas.stac.Cost;
-import shankara.fitnessparams.FitnessParams;
 
 
 public class Calc4 {
