@@ -1,13 +1,18 @@
 package shankara.calc;
 
-import com.cyberpointllc.stac.calculator.*;
+import com.cyberpointllc.stac.arithmetizer.Arithmetizer;
+import com.cyberpointllc.stac.arithmetizer.ArithmetizerFormatter;
+import com.cyberpointllc.stac.arithmetizer.BigNumberFormatter;
+import com.cyberpointllc.stac.arithmetizer.RomanNumeralFormatter;
+import com.cyberpointllc.stac.arithmetizer.ImperialFormatter;
+import com.cyberpointllc.stac.arithmetizer.SquareUnitFormatter;
+import com.cyberpointllc.stac.arithmetizer.VolumeUnitFormatter;
+
 import edu.utexas.stac.Cost;
 import shankara.fitnessparams.FitnessParams;
 
 
-
-public class Calc {
-
+public class Calc4 {
     public String toEU(String expression) {
         String[] units = expression.split(" ");
         StringBuilder sb = new StringBuilder();
@@ -20,19 +25,19 @@ public class Calc {
         return sb.toString();
     }
     public FitnessParams computeExpression(CalcType type, String expression) {
-        CalculatorFormatter f;
+        ArithmetizerFormatter f;
         switch (type) {
-            case DIGIT: f = new LargeNumeralFormatter();
+            case DIGIT: f = new BigNumberFormatter();
                 break;
             case ROMAN: f = new RomanNumeralFormatter();
                 break;
-            case RISERUN: f = new UnitFormatter();
+            case RISERUN: f = new ImperialFormatter();
                 String[] riseRun = expression.split(",");
                 if (riseRun.length != 2)
                     return null;
                 expression = "((" + toEU(riseRun[0]) + "^ 2|16) + (" + toEU(riseRun[1]) + "^ 2|16))r 2|16";
                 break;
-            case SCREEN: f = new UnitFormatter();
+            case SCREEN: f = new ImperialFormatter();
                 String[] screen = expression.split(",");
                 if (screen.length != 3)
                     return null;
@@ -42,7 +47,7 @@ public class Calc {
                 String[] circle = expression.split(",");
                 String op = circle[circle.length-1];
                 if (op.equals(CalcType.Circumference)) {
-                    f = new UnitFormatter();
+                    f = new ImperialFormatter();
                     expression = "2|16 * " + toEU(circle[0]) + " * " + CalcType.Pi;
                 } else if (op.equals(CalcType.Area)) {
                     f = new SquareUnitFormatter();
@@ -55,14 +60,14 @@ public class Calc {
                     expression = "4|16 * (" + toEU(circle[0]) + "^3|16) * " + CalcType.Pi + " / 3|16";
                 }
                 break;
-                default:
-                    f = new RomanNumeralFormatter();
-                    break;
+            default:
+                f = new RomanNumeralFormatter();
+                break;
         }
-        Calculator calc = new Calculator(f);
-        Cost.reset();
+        Arithmetizer calc = new Arithmetizer(f);
+        //Cost.reset();
         try {
-            System.out.println(calc.handleExpression(expression));
+            calc.processClause(expression);
         } catch (Exception e){}
         FitnessParams params = new FitnessParams();
         params.cost = Cost.read();
