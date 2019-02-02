@@ -11,10 +11,7 @@ import shankara.fitnessparams.FitnessParams;
 
 
 public class Calc4 {
-    enum CalcType {
-        DIGIT, ROMAN
-    }
-    public FitnessParams computeExpression(CalcType type, String expression) {
+    public FitnessParams computeExpression(Calc4Type type, String expression) {
         ArithmetizerFormatter f;
         switch (type) {
             case DIGIT: f = new BigNumberFormatter();
