@@ -1,14 +1,20 @@
 package shankara.calc;
 
-import java.util.Map;
-
 public class Main {
     public static void main(String[] args) {
         Calc c = new Calc();
-        FitnessParams params = c.computeExpression(CalcType.CIRCLE, args[0]);
-        System.out.println(params.cost);
-        for (Map.Entry<String, Double> entry : params.limits.entrySet()) {
-            System.out.println(entry.getKey() + "=" + entry.getValue());
-        }
+        c.calc4 = false;
+        EnglishUnit rise = new EnglishUnit("0", "0", "1+0");
+        c.CalculateRise(rise, rise);
+        c.CalculateArea(rise);
+        c.CalculateDigit("1+2");
+        c.CalculateRoman("M+X");
+        c.CalculateVolume(rise);
+        c.calc4 = true;
+        c.CalculateRise(rise, rise);
+        c.CalculateArea(rise);
+        c.CalculateDigit("1+2");
+        c.CalculateRoman("M+X");
+        c.CalculateVolume(rise);
     }
 }
