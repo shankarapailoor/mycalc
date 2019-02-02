@@ -64,7 +64,7 @@ public class Calc4 {
                 break;
         }
         Arithmetizer calc = new Arithmetizer(f);
-        //Cost.reset();
+        Cost.reset();
         try {
             calc.processClause(expression);
         } catch (Exception e){}
